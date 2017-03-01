@@ -14,21 +14,65 @@
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+					<button type="button" class="btn btn-default navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
 					<!--button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed"-->
 					  <span class="sr-only">Toggle navigation</span>
-					  <!--
+					  
+					  <!--span class="icon-bar"></span>
 					  <span class="icon-bar"></span>
-					  <span class="icon-bar"></span>
-					  <span class="icon-bar"></span>
-					  -->
+					  <span class="icon-bar"></span-->
+					  
 					  <i class="glyphicon glyphicon-search"></i>
 					</button>
+					
+					<!--button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-2">
+					  <span class="sr-only">Toggle navigation</span>
+					  <i class="glyphicon glyphicon-search"></i>
+					</button-->
+				
 					<a class="navbar-brand" href="#">Spotify Search</a>
+					
+					<div class="btn-group settings">
+  						<button type="button" class="btn navbar-btn navbar-right dropdown-toggle" data-toggle="dropdown">
+							<span class="glyphicon glyphicon-cog"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						
+						<ul class="dropdown-menu" role="menu"> 
+							<li>Sort By</li>
+							<li class="radio"><label><input type="radio" name="sort_option" value="None" data-ng-model="sortBy" data-ng-change="sortByChanged()">None</label></li>
+							<li class="radio"><label><input type="radio" name="sort_option" value="Album" data-ng-model="sortBy" data-ng-change="sortByChanged()">Album</label></li>
+							<li class="radio"><label><input type="radio" name="sort_option" value="Artist" data-ng-model="sortBy" data-ng-change="sortByChanged()">Artist</label></li>
+							<li class="divider"></li>
+							<li>Results per page</li>
+							<li class="radio"><label><input type="radio" name="results_per_page" value="20" data-ng-model="resultsPerPage" data-ng-change="search_album()">20</label></li>
+							<li class="radio"><label><input type="radio" name="results_per_page" value="30" data-ng-model="resultsPerPage" data-ng-change="search_album()">30</label></li>
+							<li class="radio"><label><input type="radio" name="results_per_page" value="40" data-ng-model="resultsPerPage" data-ng-change="search_album()">40</label></li>
+							<li class="radio"><label><input type="radio" name="results_per_page" value="50" data-ng-model="resultsPerPage" data-ng-change="search_album()">50</label></li>
+						</ul>
+					</div>
+					
+					<!--ul class="nav navbar-nav">
+						<li>
+							<div class="btn-group navbar-btn">
+								<button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></button>
+								<ul class="dropdown-menu">
+									<li>
+									</li>
+									<li class="divider"></li>
+									<li>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul-->
 				</div>
+				
+					
 				<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<!--div class="collapse navbar-collapse" uib-collapse="isNavCollapsed"-->
-					<div class="navbar-right col-sm-3 col-md-3">
+					
+					<div class="navbar-right">
 						<form class="navbar-form">
 							<div class="input-group">
 								<input type="text" class="form-control" placeholder="Search" data-ng-model="search_param" 
@@ -43,6 +87,20 @@
 						</form>
 					</div>
 				</div>
+				
+				<!--div class="collapse navbar-collapse" id="navbar-collapse-2">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+							<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							  <li><a href="#">Page 1-1</a></li>
+							  <li><a href="#">Page 1-2</a></li>
+							  <li><a href="#">Page 1-3</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div-->
 			</div>
 		</nav>
 		
@@ -68,7 +126,7 @@
 			</div>
 			
 			<ul class="row gallery">
-				<li class="col-lg-3 col-md-3 col-sm-4 col-xs-6" data-ng-repeat="item in album_result.albums.items" data-ng-cloak>
+				<li class="col-lg-3 col-md-3 col-sm-4 col-xs-6" data-ng-repeat="item in album_result" data-ng-cloak>
 					<div class="card">
 					
 					  <img img-preload class="fade" data-ng-attr-src="{{item.images[item.images.length - 2].url}}" alt="Avatar" style="width: 150px; height: 150px;" 

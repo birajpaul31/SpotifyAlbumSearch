@@ -25,12 +25,31 @@ app.directive('imgPreload', ['$rootScope', function($rootScope) {
     };
 }]);
 
-app.controller('AlbumSearchController', AlbumSearchController);
+app.controller('AlbumSearchController', ['$scope','$http','$anchorScroll','orderByFilter', AlbumSearchController]);
 
-function AlbumSearchController($scope, $http, $anchorScroll){
+function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 	
 	var local_search_param = "";
 	$scope.isNavCollapsed = true;
+	$scope.sortBy = "None";
+	$scope.resultsPerPage = "20";
+	
+	$scope.sortByChanged = function(){
+		console.log($scope.sortBy);
+		
+		switch($scope.sortBy){
+			case "None": 
+				$scope.album_result = $scope.response_data.albums.items;
+				break;
+			case "Album": 
+				$scope.album_result = orderBy($scope.response_data.albums.items, 'name');
+				break;
+			case "Artist": 
+				$scope.album_result = orderBy($scope.response_data.albums.items, 'artists[0].name');
+				break;
+		}
+		
+	}
 	
 	$scope.search_album = function(){
 		jQuery(".navbar-collapse.in").collapse('hide');
@@ -39,6 +58,7 @@ function AlbumSearchController($scope, $http, $anchorScroll){
 		$scope.setPage(1);
 		$scope.start_search(0);
 		$scope.info_hide = true;
+		$scope.itemsPerPage = parseInt($scope.resultsPerPage);
 	};
 	
 	$scope.pagination_hide = true;
@@ -54,12 +74,14 @@ function AlbumSearchController($scope, $http, $anchorScroll){
 				params: {
 					q : local_search_param,
 					type: "album",
-					offset: $scope.search_offset
+					offset: $scope.search_offset,
+					limit: $scope.resultsPerPage
 				}
-			}).then(function mySucces(response) {
-				$scope.album_result = response.data;
+			}).then(function mySuccess(response) {
+				$scope.response_data = response.data;
+				$scope.sortByChanged();
 				console.log(response.data);
-				$scope.totalItems = $scope.album_result.albums.total;
+				$scope.totalItems = $scope.response_data.albums.total;
 				$scope.pagination_hide = false;
 			}, function myError(response) {
 				$scope.query_error = response.statusText;
@@ -69,6 +91,7 @@ function AlbumSearchController($scope, $http, $anchorScroll){
 	
 	$scope.totalItems = 60;
 	$scope.currentPage = 1;
+	$scope.itemsPerPage = parseInt($scope.resultsPerPage);
 
 	$scope.setPage = function (pageNo) {
 		$scope.currentPage = pageNo;
@@ -76,11 +99,9 @@ function AlbumSearchController($scope, $http, $anchorScroll){
 
 	$scope.pageChanged = function() {
 		console.log('Page changed to: ' + $scope.currentPage);
-		$scope.start_search(($scope.currentPage - 1)*20);
+		$scope.start_search(($scope.currentPage - 1)*($scope.itemsPerPage));
+		console.log("Items per page " + $scope.itemsPerPage);
 	};
-	
-	$scope.maxSize = 20;
-	$scope.itemsPerPage = 20;
 	
 	$scope.showImage = function(item){
 		console.log(item.currentTarget.getAttribute("data-img-full-res"));

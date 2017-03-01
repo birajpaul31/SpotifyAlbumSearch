@@ -63,3 +63,43 @@ ul.gallery li {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+@media only screen and (max-width: 768px) {
+	.settings {
+		position: absolute;
+		right: 65px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.settings {
+		position: absolute;
+		right: 270px;
+	}
+}
+
+.navbar-toggle {
+	height: 34px !important;
+	width: 40px !important;
+	padding: 7px 10px 10px 11px !important;
+}
+
+.settings .dropdown-menu{
+	margin-left: -120px;
+}
+
+.settings .dropdown-menu li {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.dropdown-toggle {
+	background-color: transparent;
+	background-image: none;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.dropdown-toggle:hover, .dropdown-toggle:focus {
+	background-color: #ddd;
+}
