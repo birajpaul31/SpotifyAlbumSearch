@@ -1,0 +1,16 @@
+{
+  "name": "spotify-search",
+  "version": "1.0.0",
+  "description": "Search for albums from Spotify database",
+  "main": "search.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Biraj",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-animate": "^1.6.2",
+    "express": "^4.14.1"
+  }
+}

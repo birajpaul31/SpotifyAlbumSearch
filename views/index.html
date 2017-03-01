@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="css/styles.css" rel="stylesheet" />
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="bootstrap/bootstrap.min.js"></script>
+		<script src="node_modules/angular/angular.js"></script>
+		<script src="node_modules/angular-animate/angular-animate.js"></script>
+	</head>
+	
+	<body data-ng-app="AlbumSearch" data-ng-controller="AlbumSearchController">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+					<!--button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed"-->
+					  <span class="sr-only">Toggle navigation</span>
+					  <!--
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  -->
+					  <i class="glyphicon glyphicon-search"></i>
+					</button>
+					<a class="navbar-brand" href="#">Spotify Search</a>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<!--div class="collapse navbar-collapse" uib-collapse="isNavCollapsed"-->
+					<div class="navbar-right col-sm-3 col-md-3">
+						<form class="navbar-form">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search" data-ng-model="search_param" 
+									data-ng-keypress="($event.which === 13)?search_album():0" required>
+								
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default" data-ng-click="search_album()">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container-fluid content">
+		
+			<div class="row">
+			<div class="alert alert-info col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 alert_box" data-ng-hide="info_hide">
+				<p><strong>Info!</strong> Welcome to Spotify Search. </p>
+				
+					<p class="hidden-sm hidden-xs"><i class="glyphicon glyphicon-chevron-right"></i> Search for albums by using the search box at the top right. <br /></p>
+					<p class="hidden-md hidden-lg"><i class="glyphicon glyphicon-chevron-right"></i> Search for albums by using the search icon at the top right <br /></p>
+					<i class="glyphicon glyphicon-chevron-right"></i> Click on thumbnails to view it in higher resolution. <br />
+					<i class="glyphicon glyphicon-chevron-right"></i> Close it by clicking anywhere in the faded background. <br />
+				
+				<p><strong>Let's get started!</strong></p>
+			</div>
+			</div>
+			
+			<div class="row hidden-lg hidden-md text-center search_badge">
+				<div class="search_badge">
+					<span class="label label-primary" data-ng-bind="search_param"></span>
+				</div>
+			</div>
+			
+			<ul class="row gallery">
+				<li class="col-lg-3 col-md-3 col-sm-4 col-xs-6" data-ng-repeat="item in album_result.albums.items" data-ng-cloak>
+					<div class="card">
+					
+					  <img img-preload class="fade" data-ng-attr-src="{{item.images[item.images.length - 2].url}}" alt="Avatar" style="width: 150px; height: 150px;" 
+						data-img-full-res="{{item.images[0].url}}" data-ng-click="showImage($event)"
+						data-artist-name="{{item.artists[0].name}}" data-album-name="{{item.name}}" />
+						
+					  <div class="card_container">
+						<b class="album-title">{{item.name}}</b>
+						<p class="album-artist">{{item.artists[0].name}}</p>
+					  </div>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="row">
+				<div class="pagination_col" data-ng-hide="pagination_hide">
+					<ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-body">
+				<img img-preload ng-attr-src="{{img_src}}" class="img-responsive fade"/>
+				<b>{{album_name}}</b>
+				<p>{{artist_name}}</p>
+			  </div>
+			</div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+</html>
