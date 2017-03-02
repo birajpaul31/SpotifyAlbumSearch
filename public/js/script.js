@@ -33,6 +33,9 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 	$scope.isNavCollapsed = true;
 	$scope.sortBy = "None";
 	$scope.resultsPerPage = "20";
+	$scope.pagination_hide = true;
+	$scope.info_hide = false;
+	$scope.error_hide = true;
 	
 	$scope.sortByChanged = function(){
 		console.log($scope.sortBy);
@@ -58,12 +61,10 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 		$scope.setPage(1);
 		$scope.start_search(0);
 		$scope.info_hide = true;
+		$scope.error_hide = true;
 		$scope.itemsPerPage = parseInt($scope.resultsPerPage);
 		jQuery('.search_badge').find('p').text(local_search_param);
 	};
-	
-	$scope.pagination_hide = true;
-	$scope.info_hide = false;
 	
 	$scope.start_search = function(offset){
 		$scope.search_offset = offset;
@@ -78,14 +79,21 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 					offset: $scope.search_offset,
 					limit: $scope.resultsPerPage
 				}
-			}).then(function mySuccess(response) {
+			}).then(function mySuccess(response) {				
 				$scope.response_data = response.data;
 				$scope.sortByChanged();
 				console.log(response.data);
 				$scope.totalItems = $scope.response_data.albums.total;
 				$scope.pagination_hide = false;
+				
+				if(response.data.albums.total === 0) {
+					$scope.error_hide = false;
+					$scope.pagination_hide = true;
+				}
+				
 			}, function myError(response) {
 				$scope.query_error = response.statusText;
+				$scope.error_hide = false;
 			});
 		$anchorScroll();
 	};

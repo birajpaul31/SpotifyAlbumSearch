@@ -1,3 +1,12 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
 .card {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -75,6 +84,12 @@ ul.gallery li {
 		right: 0px;
 		display: none;
 	}
+	
+	.navbar-form-container-toggle {
+		display: inline-block;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 
 }
 
@@ -130,6 +145,7 @@ ul.gallery li {
 	border: 0px;
 }
 
+/*
 .navbar-form-container-toggle {
 		position: absolute;
 		right: 0px;
@@ -137,7 +153,14 @@ ul.gallery li {
 		margin-left: 10px;
 		margin-right: 10px;
 }
+*/
 
 .search_badge p {
 	white-space: normal;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
