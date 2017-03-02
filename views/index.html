@@ -14,7 +14,7 @@
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<button type="button" class="btn btn-default navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+					<button type="button" class="btn btn-default navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1" data-ng-init="toggleNavSearch = true" data-ng-show="toggleNavSearch" data-ng-click="nav_search_toggle()">
 					<!--button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed"-->
 					  <span class="sr-only">Toggle navigation</span>
 					  
@@ -66,13 +66,32 @@
 							</div>
 						</li>
 					</ul-->
+					
+					<div class="navbar-form-container">
+						<form class="navbar-form">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search" data-ng-model="search_param" 
+									data-ng-keypress="($event.which === 13)?search_album():0" required>
+								
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default input_search_button" data-ng-click="search_album()">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+									
+									<button type="button" class="btn btn-default search_cancel_button" data-ng-click="nav_search_toggle()">
+										<i class="glyphicon glyphicon-remove"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 				
 					
-				<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<!--div class="collapse navbar-collapse" id="navbar-collapse-1"-->
 				<!--div class="collapse navbar-collapse" uib-collapse="isNavCollapsed"-->
 					
-					<div class="navbar-right">
+					<!--div class="navbar-right">
 						<form class="navbar-form">
 							<div class="input-group">
 								<input type="text" class="form-control" placeholder="Search" data-ng-model="search_param" 
@@ -85,8 +104,8 @@
 								</div>
 							</div>
 						</form>
-					</div>
-				</div>
+					</div-->
+				<!--/div-->
 				
 				<!--div class="collapse navbar-collapse" id="navbar-collapse-2">
 					<ul class="nav navbar-nav navbar-right">
@@ -120,9 +139,7 @@
 			</div>
 			
 			<div class="row hidden-lg hidden-md text-center search_badge">
-				<div class="search_badge">
-					<span class="label label-primary" data-ng-bind="search_param"></span>
-				</div>
+				<p class="label label-primary"></p>
 			</div>
 			
 			<ul class="row gallery">

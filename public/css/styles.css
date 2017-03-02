@@ -58,7 +58,7 @@ ul.gallery li {
 
 .search_badge {
 	margin-bottom: 10px;
-	width: 200px;
+	max-width: 400px;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -69,12 +69,33 @@ ul.gallery li {
 		position: absolute;
 		right: 65px;
 	}
+	
+	.navbar-form-container {
+		position: absolute;
+		right: 0px;
+		display: none;
+	}
+
 }
 
 @media only screen and (min-width: 768px) {
 	.settings {
 		position: absolute;
 		right: 270px;
+	}
+	
+	.navbar-form-container {
+		position: absolute;
+		right: 0px;
+	}
+	
+	.search_cancel_button {
+		display: none;
+	}
+	
+	.input_search_button {
+		border-top-right-radius: 4px !important;
+		border-bottom-right-radius: 4px !important;
 	}
 }
 
@@ -102,4 +123,21 @@ ul.gallery li {
 
 .dropdown-toggle:hover, .dropdown-toggle:focus {
 	background-color: #ddd;
+}
+
+.navbar-form {
+	padding: 0px 15px;
+	border: 0px;
+}
+
+.navbar-form-container-toggle {
+		position: absolute;
+		right: 0px;
+		display: inline-block;
+		margin-left: 10px;
+		margin-right: 10px;
+}
+
+.search_badge p {
+	white-space: normal;
 }

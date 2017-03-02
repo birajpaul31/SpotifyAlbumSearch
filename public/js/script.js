@@ -59,6 +59,7 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 		$scope.start_search(0);
 		$scope.info_hide = true;
 		$scope.itemsPerPage = parseInt($scope.resultsPerPage);
+		jQuery('.search_badge').find('p').text(local_search_param);
 	};
 	
 	$scope.pagination_hide = true;
@@ -112,4 +113,14 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 	}
 	
 	$scope.maxSize = 3;
+	
+	$scope.nav_search_toggle = function(){
+		$scope.toggleNavSearch = !$scope.toggleNavSearch;
+		if($scope.toggleNavSearch === false){
+			jQuery('.navbar-form-container').addClass('navbar-form-container-toggle');
+			jQuery('.navbar-form-container').find('input[type="text"]').focus();
+		}
+		else
+			jQuery('.navbar-form-container').removeClass('navbar-form-container-toggle');
+	}
 };
