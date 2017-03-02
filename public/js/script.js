@@ -128,7 +128,9 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 		$scope.img_src = item.currentTarget.getAttribute("data-img-full-res");
 		$scope.artist_name = item.currentTarget.getAttribute("data-artist-name");
 		$scope.album_name = item.currentTarget.getAttribute("data-album-name");
-		jQuery('#imageModal').modal("show");
+		jQuery('#imageModal').find('img').on('load', function(){
+			jQuery('#imageModal').modal("show");
+		});
 	}
 	
 	
