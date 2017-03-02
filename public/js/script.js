@@ -128,6 +128,11 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 		$scope.img_src = item.currentTarget.getAttribute("data-img-full-res");
 		$scope.artist_name = item.currentTarget.getAttribute("data-artist-name");
 		$scope.album_name = item.currentTarget.getAttribute("data-album-name");
+		
+		/*  Ensure that the image is loaded before calling the modal. If the image hasn't yet loaded when the modal is called, then it gives a 
+			very bad effect. The tradeoff for using this is that sometimes the modal might take a second longer to open, depending on how long
+			the image takes to load */
+			
 		jQuery('#imageModal').find('img').on('load', function(){
 			jQuery('#imageModal').modal("show");
 		});
