@@ -2,13 +2,16 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<!-- Style sheets -->
 		<link href="bootstrap/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/styles.css" rel="stylesheet" />
+		
+		<!-- Script files -->
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="bootstrap/bootstrap.min.js"></script>
 		<script src="node_modules/angular/angular.js"></script>
 		<script src="node_modules/angular-animate/angular-animate.js"></script>
-		<script src="js/script.js"></script>
 	</head>
 	
 	<body data-ng-app="AlbumSearch" data-ng-controller="AlbumSearchController">
@@ -16,20 +19,9 @@
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="btn btn-default navbar-toggle" data-ng-init="toggleNavSearch = true" data-ng-show="toggleNavSearch" data-ng-click="nav_search_toggle()">
-					<!--button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed"-->
-					  <span class="sr-only">Toggle navigation</span>
-					  
-					  <!--span class="icon-bar"></span>
-					  <span class="icon-bar"></span>
-					  <span class="icon-bar"></span-->
-					  
-					  <i class="glyphicon glyphicon-search"></i>
+						<span class="sr-only">Toggle navigation</span>
+						<i class="glyphicon glyphicon-search"></i>
 					</button>
-					
-					<!--button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-2">
-					  <span class="sr-only">Toggle navigation</span>
-					  <i class="glyphicon glyphicon-search"></i>
-					</button-->
 				
 					<a class="navbar-brand" href="#">Spotify Search</a>
 					
@@ -53,21 +45,6 @@
 						</ul>
 					</div>
 					
-					<!--ul class="nav navbar-nav">
-						<li>
-							<div class="btn-group navbar-btn">
-								<button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></button>
-								<ul class="dropdown-menu">
-									<li>
-									</li>
-									<li class="divider"></li>
-									<li>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul-->
-					
 					<div class="navbar-form-container">
 						<form class="navbar-form">
 							<div class="input-group">
@@ -88,39 +65,6 @@
 					</div>
 				</div>
 				
-					
-				<!--div class="collapse navbar-collapse" id="navbar-collapse-1"-->
-				<!--div class="collapse navbar-collapse" uib-collapse="isNavCollapsed"-->
-					
-					<!--div class="navbar-right">
-						<form class="navbar-form">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search" data-ng-model="search_param" 
-									data-ng-keypress="($event.which === 13)?search_album():0" required>
-								
-								<div class="input-group-btn">
-									<button type="button" class="btn btn-default" data-ng-click="search_album()">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div-->
-				<!--/div-->
-				
-				<!--div class="collapse navbar-collapse" id="navbar-collapse-2">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
-							<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-							  <li><a href="#">Page 1-1</a></li>
-							  <li><a href="#">Page 1-2</a></li>
-							  <li><a href="#">Page 1-3</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div-->
 			</div>
 		</nav>
 		
@@ -134,6 +78,7 @@
 						<p class="hidden-md hidden-lg"><i class="glyphicon glyphicon-chevron-right"></i> Search for albums by using the search icon at the top right <br /></p>
 						<i class="glyphicon glyphicon-chevron-right"></i> Click on thumbnails to view it in higher resolution. <br />
 						<i class="glyphicon glyphicon-chevron-right"></i> Close it by clicking anywhere in the faded background. <br />
+						<i class="glyphicon glyphicon-chevron-right"></i> Use the settings button to change sort order and number of results per page <br />
 					
 					<p><strong>Let's get started!</strong></p>
 				</div>
@@ -151,14 +96,14 @@
 				<li class="col-lg-3 col-md-3 col-sm-4 col-xs-6" data-ng-repeat="item in album_result" data-ng-cloak>
 					<div class="card">
 					
-					  <img img-preload class="fade" data-ng-attr-src="{{item.images[item.images.length - 2].url}}" alt="Avatar" style="width: 150px; height: 150px;" 
-						data-img-full-res="{{item.images[0].url}}" data-ng-click="showImage($event)"
-						data-artist-name="{{item.artists[0].name}}" data-album-name="{{item.name}}" />
+						<img img-preload class="fade" data-ng-attr-src="{{item.images[item.images.length - 2].url}}" alt="thumbnail" 
+						  data-img-full-res="{{item.images[0].url}}" data-ng-click="showImage($event)"
+						  data-artist-name="{{item.artists[0].name}}" data-album-name="{{item.name}}" />
 						
-					  <div class="card_container">
-						<b class="album-title">{{item.name}}</b>
-						<p class="album-artist">{{item.artists[0].name}}</p>
-					  </div>
+						<div class="card_container">
+							<b class="album-title">{{item.name}}</b>
+							<p class="album-artist">{{item.artists[0].name}}</p>
+						</div>
 					</div>
 				</li>
 			</ul>	
@@ -167,22 +112,23 @@
 		
 		<div class="footer">
 			<div class="pagination_col" data-ng-hide="pagination_hide">
-				<ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></ul>
+				<ul uib-pagination total-items="totalItems" data-ng-model="currentPage" data-ng-change="pageChanged()" items-per-page="itemsPerPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></ul>
 			</div>
 		</div>
 		
 		<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
-			  <div class="modal-body">
-				<img img-preload ng-attr-src="{{img_src}}" class="img-responsive fade"/>
-				<b>{{album_name}}</b>
-				<p>{{artist_name}}</p>
-			  </div>
-			</div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+				<div class="modal-body">
+					<img img-preload ng-attr-src="{{img_src}}" class="img-responsive fade"/>
+					<b>{{album_name}}</b>
+					<p>{{artist_name}}</p>
+				</div>
+			</div>
+		  </div>
+		</div>
 
 		<script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+		<script src="js/script.js"></script>
 	</body>
 </html>

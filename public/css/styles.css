@@ -17,6 +17,12 @@ body {
 	text-overflow: ellipsis;
 }
 
+.card img {
+	cursor: pointer;
+	width: 150px;
+	height: 150px;
+}
+
 /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -73,6 +79,10 @@ ul.gallery li {
 	margin-right: auto;
 }
 
+.search_badge p {
+	white-space: normal;
+}
+
 @media only screen and (max-width: 768px) {
 	.settings {
 		position: absolute;
@@ -120,6 +130,11 @@ ul.gallery li {
 	padding: 7px 10px 10px 11px !important;
 }
 
+.navbar-form {
+	padding: 0px 15px;
+	border: 0px;
+}
+
 .settings .dropdown-menu{
 	margin-left: -120px;
 }
@@ -138,25 +153,6 @@ ul.gallery li {
 
 .dropdown-toggle:hover, .dropdown-toggle:focus {
 	background-color: #ddd;
-}
-
-.navbar-form {
-	padding: 0px 15px;
-	border: 0px;
-}
-
-/*
-.navbar-form-container-toggle {
-		position: absolute;
-		right: 0px;
-		display: inline-block;
-		margin-left: 10px;
-		margin-right: 10px;
-}
-*/
-
-.search_badge p {
-	white-space: normal;
 }
 
 .footer {
