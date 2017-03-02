@@ -76,7 +76,6 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 		
 		$scope.setPage(1);
 		$scope.start_search(0);
-		$scope.info_hide = true;
 		$scope.error_hide = true;
 		$scope.itemsPerPage = parseInt($scope.resultsPerPage);
 		jQuery('.search_badge').find('p').text(local_search_param);
@@ -85,30 +84,35 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 	$scope.start_search = function(offset){
 		$scope.search_offset = offset;
 		var url = "https://api.spotify.com/v1/search";
-		$http({
-				method : "GET",
-				url : url,
-				params: {
-					q : local_search_param,
-					type: "album",
-					offset: $scope.search_offset,
-					limit: $scope.resultsPerPage
-				}
-			}).then(function mySuccess(response) {				
-				$scope.response_data = response.data;
-				$scope.sortByChanged();
-				$scope.totalItems = $scope.response_data.albums.total;
-				$scope.pagination_hide = false;
-				
-				if(response.data.albums.total === 0) {
+		if($scope.search_param != null){
+			$scope.info_hide = true;
+			$http({
+					method : "GET",
+					url : url,
+					params: {
+						q : local_search_param,
+						type: "album",
+						offset: $scope.search_offset,
+						limit: $scope.resultsPerPage
+					}
+				}).then(function mySuccess(response) {				
+					$scope.response_data = response.data;
+					$scope.sortByChanged();
+					$scope.totalItems = $scope.response_data.albums.total;
+					$scope.pagination_hide = false;
+					
+					if(response.data.albums.total === 0) {
+						jQuery('.error_msg').text("No results. Search for something else.");
+						$scope.error_hide = false;
+						$scope.pagination_hide = true;
+					}
+					
+				}, function myError(response) {
+					$scope.query_error = response.statusText;
+					jQuery('.error_msg').text($scope.query_error);
 					$scope.error_hide = false;
-					$scope.pagination_hide = true;
-				}
-				
-			}, function myError(response) {
-				$scope.query_error = response.statusText;
-				$scope.error_hide = false;
-			});
+				});
+		}
 		$anchorScroll();
 	};
 
