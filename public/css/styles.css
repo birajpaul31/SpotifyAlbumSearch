@@ -160,3 +160,10 @@ ul.gallery li {
 	bottom: 0;
 	width: 100%;
 }
+
+.modal_close_but {
+	position: absolute;
+	top: 2.5vh;
+	right: 3vh;
+	color: rgba(100, 100, 100, 0.5);
+}
