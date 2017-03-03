@@ -136,7 +136,9 @@ ul.gallery li {
 	border: 1px solid #86A6B6;
 }
 
-.navbar-toggle:hover, .navbar-toggle:focus {
+.navbar-toggle:hover, .navbar-toggle:focus, 
+.input_search_button:hover, .search_cancel_button:hover,
+.input_search_button:focus, .search_cancel_button:focus {
 	background-color: #7EA1B2;
 }
 
