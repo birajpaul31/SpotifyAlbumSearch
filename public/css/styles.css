@@ -124,10 +124,20 @@ ul.gallery li {
 	}
 }
 
+.input_search_button, .search_cancel_button {
+	color: #31708f;
+}
+
 .navbar-toggle {
 	height: 34px !important;
 	width: 40px !important;
 	padding: 7px 10px 10px 11px !important;
+	color: #31708f;
+	border: 1px solid #86A6B6;
+}
+
+.navbar-toggle:hover, .navbar-toggle:focus {
+	background-color: #7EA1B2;
 }
 
 .navbar-form {
@@ -147,12 +157,12 @@ ul.gallery li {
 .dropdown-toggle {
 	background-color: transparent;
 	background-image: none;
-	border: 1px solid #ddd;
+	border: 1px solid #86A6B6;
 	border-radius: 4px;
 }
 
 .dropdown-toggle:hover, .dropdown-toggle:focus {
-	background-color: #ddd;
+	background-color: #7EA1B2;
 }
 
 .footer {
@@ -166,4 +176,14 @@ ul.gallery li {
 	top: 2.5vh;
 	right: 3vh;
 	color: rgba(100, 100, 100, 0.5);
+}
+
+.navbar-custom{
+	background: #d9edf7; /* For browsers that do not support gradients */
+	border: 0px;
+	color: #31708f;
+}
+
+.navbar-brand {
+	color: #31708f;
 }
