@@ -1,5 +1,5 @@
 
-var app = angular.module("AlbumSearch", ['ui.bootstrap', 'ngAnimate']);
+var app = angular.module("AlbumSearch", ['ui.bootstrap', 'ngAnimate', 'ngTouch']);
 
 /*
 	This directive is used to create fading effect when the next set of images is loaded. This keeps the current image in the views, till the 
@@ -30,9 +30,9 @@ app.directive('imgPreload', ['$rootScope', function($rootScope) {
     };
 }]);
 
-app.controller('AlbumSearchController', ['$scope','$http','$anchorScroll','orderByFilter', AlbumSearchController]);
+app.controller('AlbumSearchController', ['$scope','$http','$anchorScroll','orderByFilter','$timeout', AlbumSearchController]);
 
-function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
+function AlbumSearchController($scope, $http, $anchorScroll, orderBy, $timeout){
 	
 	/* Initialize data */
 	var local_search_param = "";
@@ -149,5 +149,20 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy){
 		else {
 			jQuery('.navbar-form-container').removeClass('navbar-form-container-toggle');
 		}
+	}
+	
+	$scope.swipe = function(dir) {
+		if(dir === 'left'){
+			$timeout(function() {
+				jQuery('.pagination_col').find('a:contains("Next")').click();
+			}, 1);
+		} else if(dir === 'right'){
+			$timeout(function() {
+				jQuery('.pagination_col').find('a:contains("Previous")').click();
+			}, 1);
+		} else {
+			// Do nothing
+		}
+		
 	}
 };
