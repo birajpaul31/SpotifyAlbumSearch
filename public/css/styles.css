@@ -209,13 +209,14 @@ ul.gallery li {
 	color: #404040;
 }
 
+
 .pagination>.active>a, 
 .pagination>.active>a:focus, .pagination>.active>a:hover, 
 .pagination>.active>span, 
 .pagination>.active>span:focus, .pagination>.active>span:hover{
 	color: #fff;
 	background: #404040;
-	border-color: #a6a6a6;
+	border-color: #66afe9;
 }
 
 .pagination>.disabled>a, 
