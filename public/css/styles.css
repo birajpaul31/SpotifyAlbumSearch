@@ -95,10 +95,17 @@ ul.gallery li {
 		display: none;
 	}
 	
+	.navbar-form-container form {
+		box-shadow: 0px 0px;
+		-webkit-box-shadow: 0px 0px;
+		-moz-box-shadow: 0px 0px;
+	}
+	
 	.navbar-form-container-toggle {
 		display: inline-block;
 		margin-left: 10px;
 		margin-right: 10px;
+		border: 0px;
 	}
 
 }
@@ -125,21 +132,22 @@ ul.gallery li {
 }
 
 .input_search_button, .search_cancel_button {
-	color: #31708f;
+	color: #404040;
 }
 
 .navbar-toggle {
 	height: 34px !important;
 	width: 40px !important;
 	padding: 7px 10px 10px 11px !important;
-	color: #31708f;
-	border: 1px solid #86A6B6;
+	color: #e6e6e6;
+	border: 1px solid #e6e6e6;
 }
 
 .navbar-toggle:hover, .navbar-toggle:focus, 
 .input_search_button:hover, .search_cancel_button:hover,
-.input_search_button:focus, .search_cancel_button:focus {
-	background-color: #7EA1B2;
+.input_search_button:focus, .search_cancel_button:focus,
+.dropdown-toggle:hover, .dropdown-toggle:focus {
+	background-color: #b3b3b3;
 }
 
 .navbar-form {
@@ -149,6 +157,7 @@ ul.gallery li {
 
 .settings .dropdown-menu{
 	margin-left: -120px;
+	color: #404040;
 }
 
 .settings .dropdown-menu li {
@@ -159,12 +168,8 @@ ul.gallery li {
 .dropdown-toggle {
 	background-color: transparent;
 	background-image: none;
-	border: 1px solid #86A6B6;
+	border: 1px solid #e6e6e6;
 	border-radius: 4px;
-}
-
-.dropdown-toggle:hover, .dropdown-toggle:focus {
-	background-color: #7EA1B2;
 }
 
 .footer {
@@ -180,12 +185,42 @@ ul.gallery li {
 	color: rgba(100, 100, 100, 0.5);
 }
 
-.navbar-custom{
-	background: #d9edf7; /* For browsers that do not support gradients */
+.navbar-custom {
+	background: #404040;
 	border: 0px;
-	color: #31708f;
+	color: #e6e6e6;
+}
+
+.alert_box, .error_box, .search_badge p {
+	background: #d9d9d9;
+	color: #404040;
+	border-color: #a6a6a6;
+}
+
+.error_box {
+	text-align: center;
 }
 
 .navbar-brand {
-	color: #31708f;
+	color: #e6e6e6;
+}
+
+.pagination>li>a, .pagination>li>span {
+	color: #404040;
+}
+
+.pagination>.active>a, 
+.pagination>.active>a:focus, .pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, .pagination>.active>span:hover{
+	color: #fff;
+	background: #404040;
+	border-color: #a6a6a6;
+}
+
+.pagination>.disabled>a, 
+.pagination>.disabled>a:focus, .pagination>.disabled>a:hover, 
+.pagination>.disabled>span, 
+.pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
+	color: #999;
 }

@@ -102,7 +102,7 @@ function AlbumSearchController($scope, $http, $anchorScroll, orderBy, $timeout){
 					$scope.pagination_hide = false;
 					
 					if(response.data.albums.total === 0) {
-						jQuery('.error_msg').text("No results. Search for something else.");
+						jQuery('.error_msg').html("<span style='font-size: 20px'>Oops!</span><br />Your search didn't match any results.");
 						$scope.error_hide = false;
 						$scope.pagination_hide = true;
 					}
