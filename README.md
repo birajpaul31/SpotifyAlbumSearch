@@ -11,7 +11,7 @@ For further information follow the link: [Nodejs] (https://nodejs.org/en/)
 
 **Install dependencies and run the project**
 
-Run the following commands
+Run the following commands from the project directory
 ```
 npm install
 node index.js
